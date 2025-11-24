@@ -16,7 +16,7 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Invalid email" }),
+  email: z.email({ message: "Invalid email" }),
   password: z
     .string()
     .min(8, { message: "Please enter more than 7 characters" })
@@ -49,7 +49,6 @@ export default function LoginPage() {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Email Field */}
             <FormField
               control={form.control}
               name="email"
@@ -64,7 +63,6 @@ export default function LoginPage() {
               )}
             />
 
-            {/* Password Field */}
             <FormField
               control={form.control}
               name="password"
@@ -89,14 +87,12 @@ export default function LoginPage() {
           </form>
         </Form>
 
-        {/* OR Divider */}
         <div className="flex items-center my-4">
-          <span className="flex-grow border-t border-gray-300"></span>
+          <span className="grow border-t border-gray-300"></span>
           <span className="mx-2 text-gray-500">OR</span>
-          <span className="flex-grow border-t border-gray-300"></span>
+          <span className="grow border-t border-gray-300"></span>
         </div>
 
-        {/* Google Login */}
         <Button
           variant="outline"
           className="w-full flex items-center justify-center gap-2"
@@ -105,7 +101,6 @@ export default function LoginPage() {
           <FcGoogle size={24} /> Continue with Google
         </Button>
 
-        {/* Register Link */}
         <p className="mt-4 text-center text-gray-600">
           Don't have an account?{" "}
           <Link href="/register" className="text-blue-500 hover:underline">
