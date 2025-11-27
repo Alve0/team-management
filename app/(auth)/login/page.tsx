@@ -19,8 +19,13 @@ const formSchema = z.object({
   email: z.email({ message: "Invalid email" }),
   password: z
     .string()
-    .min(8, { message: "Please enter more than 7 characters" })
-    .max(16, { message: "Less than 16 characters" }),
+    .min(8, { error: "Be at least 8 characters long" })
+    .regex(/[a-zA-Z]/, { error: "Contain at least one letter." })
+    .regex(/[0-9]/, { error: "Contain at least one number." })
+    .regex(/[^a-zA-Z0-9]/, {
+      error: "Contain at least one special character.",
+    })
+    .trim(),
 });
 
 export default function LoginPage() {
